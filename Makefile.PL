@@ -541,18 +541,7 @@ sub query_options {
 #============================================================================
 sub show_python_libs {
   my $ref = shift;
-  my $exe = $ref->{path};
-
-  # Convert the exe into a glob where we might find a library:
-  $exe =~ s|[^/]+$||;
-  $exe .= "../lib/python*/config/libpython*";
-
-  my @py_libs =
-   (
-   (map { $exe . $_ } '.a', '.so', '.lib'),
-   '/opt/conda/lib/libpython*.a',
-   '/opt/conda/lib/libpython*.so',
-  );
+  my @py_libs = ('/opt/conda/lib/libpython*.so');
 
   my (@found, %found);
   push @found, grep { -f && $found{abspath($_)}++ == 0 } glob for @py_libs;
@@ -575,21 +564,11 @@ sub show_python_incs {
   $exe .= "../include/python*";
 
   my @py_incs;
-  if ($^O eq "MSWin32") {
     @py_incs = (
-      'C:\Python*\include',
-      'C:\Program Files\Python*\include'
+    $exe,
+    '/opt/conda/include/python*',
     );
-  }
-  else {
-    @py_incs = (
-      $exe,
-      '/usr/local/ActivePython-*/include/python*',
-      '/usr/include/python*',
-      '/usr/local/include/python*',
-      '/opt/conda/include/python*',
-    );
-  }
+
 
   my (@found, %found);
   push @found, grep { -d && $found{abspath($_)}++ == 0 } glob for @py_incs;
