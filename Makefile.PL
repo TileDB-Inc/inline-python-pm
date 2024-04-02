@@ -561,6 +561,7 @@ sub show_python_incs {
   my @py_incs;
     @py_incs = (
     '/opt/conda/include/python3.9/',
+    '/opt/conda/pkgs/sysroot_linux-64-2.17-h57e8cba_10/x86_64-conda-linux-gnu/sysroot/usr/include/'
     );
 
 
