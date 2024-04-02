@@ -257,7 +257,7 @@ sub interrogate {
     my $ref = shift;
     return query_options($ref) unless test_interrogate($ref);
     $ref->{syslibs}   = get_config_var($ref, "LIBS");
-    $ref->{incpath}   = get_config_var($ref, "INCLUDEPY");
+    $ref->{incpath}   = "-I/usr/include -I/usr/local/include -I/opt/conda/include/python3.9/";
     $ref->{libpath}   = get_config_var($ref, "LIBPL");
     $ref->{ldlib}     = "libpython3.9.so";
     $ref->{libpython} = "libpython3.9.so";
@@ -531,7 +531,7 @@ sub query_options {
     
     my @incs = show_python_incs($ref);
     my $inc  = $incs[0] if $inc =~ /^\d+$/;
-    $ref->{incpath} = $inc;
+    $ref->{incpath} = @incs; #$inc;
     print "python include: ";
     print $ref->{incpath};
 }
@@ -561,7 +561,8 @@ sub show_python_incs {
   my @py_incs;
     @py_incs = (
     '/opt/conda/include/python3.9/',
-    '/opt/conda/pkgs/sysroot_linux-64-2.17-h57e8cba_10/x86_64-conda-linux-gnu/sysroot/usr/include/'
+    '/opt/conda/pkgs/sysroot_linux-64-2.17-h57e8cba_10/x86_64-conda-linux-gnu/sysroot/usr/include/',
+    '/usr/local/include/'
     );
 
 
