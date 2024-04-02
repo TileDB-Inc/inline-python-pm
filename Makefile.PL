@@ -566,22 +566,8 @@ sub show_python_libs {
   my @py_libs =
    (
    (map { $exe . $_ } '.a', '.so', '.lib'),
-   '/usr/lib64/libpython*.a',
-   '/usr/lib64/libpython*.so',
-   '/usr/lib/libpython*.a',
-   '/usr/lib/libpython*.so',
-   '/usr/lib64/python*/config/libpython*.a',
-   '/usr/lib64/python*/config/libpython*.so',
-   '/usr/lib/python*/config/libpython*.a',
-   '/usr/lib/python*/config/libpython*.so',
-   '/usr/local/lib/libpython*.a',
-   '/usr/local/lib/libpython*.so',
-   '/usr/local/ActivePython-*/lib/python*/config/libpython*.a',
-   '/usr/local/ActivePython-*/lib/python*/config/libpython*.so',
-
-   # Win32 support
-   'C:/Python*/libs/python*.lib',
-   'C:/Program Files/Python*/libs/python*.lib',
+   '/opt/conda/lib/libpython*.a',
+   '/opt/conda/lib/libpython*.so',
   );
 
   my (@found, %found);
@@ -617,6 +603,7 @@ sub show_python_incs {
       '/usr/local/ActivePython-*/include/python*',
       '/usr/include/python*',
       '/usr/local/include/python*',
+      '/opt/conda/include/python*',
     );
   }
 
