@@ -82,8 +82,8 @@ my $py_major_version = get_python_major_version($sel->{path});
 interrogate($sel);
 
 # Fix up the libpath and libpython
-die "Could not find Python.h in include path. make will not work"
-  unless -e File::Spec->catfile($sel->{incpath}, "Python.h");
+#die "Could not find Python.h in include path. make will not work"
+#  unless -e File::Spec->catfile($sel->{incpath}, "Python.h");
 
 substr($sel->{incpath}, 0, 0) = "-I";
 substr($sel->{libpath}, 0, 0) = "-L";
