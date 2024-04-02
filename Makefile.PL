@@ -513,22 +513,11 @@ sub query_options {
     # Every python I've seen needs pthreads. Obviously not on windows.
     my $libs_guess = $ref->{syslibs} ? $ref->{syslibs} :
 		     $^O eq 'MSWin32' ? '' : '-lpthread';
-    print <<END;
-
-	1. LIBS option. I need to know what extra libraries, if any,
-	   are required by this build of python. I recommend this:
-	   ${ $libs_guess ? \$libs_guess : \"No extra libraries" }
-
-END
+    
     $ref->{syslibs} = $libs_guess;
-
-    print <<END;
-
-	2. LIBRARY option. The location of the python library.
-	   Inline::Python needs to link against it to use Python.
-
-	Here are the libraries I know about:
-END
+    print "python syslibs"
+    print $ref->{syslibs};
+    
     my @libs = show_python_libs($ref);
     my $defaultLibIndex = $^O eq 'MSWin32' ? get_default_python_lib_index(\@libs) : 1;
     my $lib = $defaultLibIndex;
@@ -537,17 +526,14 @@ END
     my ($volume, $directories, $file) = File::Spec->splitpath( $lib );
     $ref->{libpath} = File::Spec->canonpath(File::Spec->catpath($volume, $directories));
     $ref->{libpython} = $file;
-
-    print <<END;
-
-	3. INCLUDE option. The location of the python include files.
-	   Inline::Python needs these to compile.
-
-	Here are the locations I know about:
-END
+    print "python extra LIBS: ";
+    print $ref->{libpython};
+    
     my @incs = show_python_incs($ref);
     my $inc  = $incs[0] if $inc =~ /^\d+$/;
     $ref->{incpath} = $inc;
+    print "python include: ":
+    print $ref->{incpath};
 }
 
 #============================================================================
