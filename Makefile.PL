@@ -85,7 +85,7 @@ interrogate($sel);
 #die "Could not find Python.h in include path. make will not work"
 #  unless -e File::Spec->catfile($sel->{incpath}, "Python.h");
 
-substr($sel->{incpath}, 0, 0) = "-I";
+#substr($sel->{incpath}, 0, 0) = "-I";
 substr($sel->{libpath}, 0, 0) = "-L";
 $sel->{libpython} =~ s/lib(.*)(?:\.\Q$Config{dlext}\E|\Q$Config{_a}\E)/-l$1/;
 
@@ -529,9 +529,9 @@ sub query_options {
     print "python extra LIBS: ";
     print $ref->{libpython};
     
-    my @incs = show_python_incs($ref);
-    my $inc  = $incs[0] if $inc =~ /^\d+$/;
-    $ref->{incpath} = @incs; #$inc;
+    #my @incs = show_python_incs($ref);
+    #my $inc  = $incs[0] if $inc =~ /^\d+$/;
+    #$ref->{incpath} = @incs; #$inc;
     print "python include: ";
     print $ref->{incpath};
 }
