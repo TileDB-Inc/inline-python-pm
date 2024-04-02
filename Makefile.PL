@@ -60,7 +60,7 @@ unless ($sel) {
         }
     }
     unless ($sel) {
-        $sel = prompt("Use which?", '1');
+        $sel = 1;
         if ($sel =~ /^\d+$/) {
             die 'Invalid number. Please enter only numbers from 1 to ' . ($num - 1)
                 . " or the full path to your python executable.\n"
@@ -520,8 +520,7 @@ sub query_options {
 	   ${ $libs_guess ? \$libs_guess : \"No extra libraries" }
 
 END
-    $ref->{syslibs} = prompt("Enter extra libraries (e.g. -lfoo -lbar)",
-			     $libs_guess);
+    $ref->{syslibs} = $libs_guess;
 
     print <<END;
 
@@ -532,7 +531,7 @@ END
 END
     my @libs = show_python_libs($ref);
     my $defaultLibIndex = $^O eq 'MSWin32' ? get_default_python_lib_index(\@libs) : 1;
-    my $lib = prompt("Which? Or enter another.", $defaultLibIndex);
+    my $lib = $defaultLibIndex;
     $lib = $libs[$lib-1] if $lib =~ /^\d+$/;
     $lib =~ s|\\|/|g;
     my ($volume, $directories, $file) = File::Spec->splitpath( $lib );
@@ -547,8 +546,7 @@ END
 	Here are the locations I know about:
 END
     my @incs = show_python_incs($ref);
-    my $inc  = prompt("Which? Or enter another.", '1');
-    $inc = $incs[$inc-1] if $inc =~ /^\d+$/;
+    my $inc  = $incs[0] if $inc =~ /^\d+$/;
     $ref->{incpath} = $inc;
 }
 
