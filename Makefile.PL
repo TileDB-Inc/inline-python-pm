@@ -557,16 +557,10 @@ sub show_python_libs {
 #============================================================================
 sub show_python_incs {
   my $ref = shift;
-  my $exe = $ref->{path};
-
-  # Convert the exe into a glob where we might find the includes:
-  $exe =~ s|[^/]+$||;
-  $exe .= "../include/python*";
 
   my @py_incs;
     @py_incs = (
-    $exe,
-    '/opt/conda/include/python*',
+    '/opt/conda/include/python3.9/',
     );
 
 
