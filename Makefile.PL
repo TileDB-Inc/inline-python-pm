@@ -515,7 +515,7 @@ sub query_options {
 		     $^O eq 'MSWin32' ? '' : '-lpthread';
     
     $ref->{syslibs} = $libs_guess;
-    print "python syslibs"
+    print "python syslibs: ";
     print $ref->{syslibs};
     
     my @libs = show_python_libs($ref);
@@ -532,7 +532,7 @@ sub query_options {
     my @incs = show_python_incs($ref);
     my $inc  = $incs[0] if $inc =~ /^\d+$/;
     $ref->{incpath} = $inc;
-    print "python include: ":
+    print "python include: ";
     print $ref->{incpath};
 }
 
