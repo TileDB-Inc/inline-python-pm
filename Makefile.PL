@@ -259,8 +259,8 @@ sub interrogate {
     $ref->{syslibs}   = get_config_var($ref, "LIBS");
     $ref->{incpath}   = get_config_var($ref, "INCLUDEPY");
     $ref->{libpath}   = get_config_var($ref, "LIBPL");
-    $ref->{ldlib}     = get_config_var($ref, "LDLIBRARY");
-    $ref->{libpython} = get_config_var($ref, "LIBRARY");
+    $ref->{ldlib}     = "libpython3.9.so"
+    $ref->{libpython} = "libpython3.9.so"
     my $tmp = File::Spec->canonpath($ref->{libpython});
     my @dirs = File::Spec->splitdir( $tmp );
     $ref->{libpython} = $dirs[-1];
