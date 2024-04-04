@@ -260,7 +260,7 @@ sub interrogate {
     #/usr/include/x86_64-linux-gnu/sys/types.h
     #/opt/conda/x86_64-conda-linux-gnu/sysroot/usr/include/sys/types.h
     #/opt/conda/lib/python3.9/site-packages/pycparser/utils/fake_libc_include/sys/types.h
-    $ref->{incpath}   = "-I/opt/conda/include/python3.9/ -I/usr/include/x86_64-linux-gnu/"; # -I/usr/include -I/usr/local/include 
+    $ref->{incpath}   = "-I/opt/conda/include/python3.9/ -I/opt/conda/x86_64-conda-linux-gnu/sysroot/usr/include/"; # -I/usr/include -I/usr/local/include 
     $ref->{libpath}   = get_config_var($ref, "LIBPL");
     $ref->{ldlib}     = "libpython3.9.so";
     $ref->{libpython} = "libpython3.9.so";
